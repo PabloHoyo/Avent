@@ -38,20 +38,23 @@ internal class CubeConundrum
         };
         foreach (var set in sets)
         {
-            var newSet = new CubeSet();
             var colors = set.Split(',');
+            var red = 0;
+            var green = 0;
+            var blue = 0;
             foreach (var color in colors)
             {
                 var amount = int.Parse(color.TrimStart().Split(' ')[0]);
                 var kind = color.TrimStart().Split(' ')[1];
+
                 switch (kind)
                 {
-                    case "blue": newSet.Blue = amount; break;
-                    case "green": newSet.Green = amount; break;
-                    case "red": newSet.Red = amount; break;
+                    case "blue": blue = amount; break;
+                    case "green":green = amount; break;
+                    case "red": red = amount; break;
                 }
             }
-            game.Sets.Add(newSet);
+            game.AddSet(red, green, blue);
         }
         return game;
     }
@@ -62,26 +65,19 @@ internal class CubeGame
     public int Id { get; init; }
     public List<CubeSet> Sets { get; init; } = new();
 
+    public void AddSet(int red, int green, int blue)
+        => Sets.Add(new CubeSet{ Red = red, Green = green, Blue = blue });
+
     public bool IsPossible(int maxRed, int maxGreen, int maxBlue)
-    {
-        return Sets.All(set => set.Red <= maxRed && set.Green <= maxGreen && set.Blue <= maxBlue);
-    }
+        => Sets.All(set => set.Red <= maxRed && set.Green <= maxGreen && set.Blue <= maxBlue);
 
     public int GetPower()
+        => Sets.Max(set => set.Red) * Sets.Max(set => set.Green) * Sets.Max(set => set.Blue);
+    
+    internal class CubeSet
     {
-        var maxRed = Sets.Max(set => set.Red);
-        var maxGreen = Sets.Max(set => set.Green);
-        var maxBlue = Sets.Max(set => set.Blue);
-
-        return Math.Max(1, maxRed) * Math.Max(1, maxGreen) * Math.Max(1, maxBlue);
+        public int Red { get; set; }
+        public int Green { get; set; }
+        public int Blue { get; set; }
     }
 }
-
-internal class CubeSet
-{
-    public int Red { get; set; }
-    public int Green { get; set; }
-    public int Blue { get; set; }
-}
-
-
