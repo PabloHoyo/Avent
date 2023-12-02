@@ -15,7 +15,7 @@ internal class Trebuchet
         { "nine" , 9 },
     };
 
-    public int Calculate1()
+    public int Part1()
     {
         int result = 0;
         var lines = File.ReadAllLines("./1/input.txt");
@@ -27,7 +27,7 @@ internal class Trebuchet
         }
         return result;
     }
-    public int Calculate2()
+    public int Part2()
     {
         int result = 0;
         var lines = File.ReadAllLines("./1/input.txt");
