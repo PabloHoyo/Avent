@@ -1,4 +1,4 @@
-﻿namespace Avent;
+﻿namespace Avent._2;
 
 internal class CubeConundrum
 {
