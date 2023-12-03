@@ -2,7 +2,7 @@
 
 internal class Trebuchet
 {
-    private Dictionary<string, int> numbers = new()
+    private readonly Dictionary<string, int> numbers = new()
     {
         { "one" , 1 },
         { "two" , 2 },
