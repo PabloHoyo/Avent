@@ -1,15 +1,14 @@
-﻿using System.Numerics;
+﻿namespace Avent;
 
-namespace Avent._3;
-
-internal class GearRatios
+internal class GearRatios : Puzzle, IPuzzle
 {
+    public GearRatios() : base("./3/input.txt") { }
+
     public int Part1()
     {
         int result = 0;
         var currentNumber = string.Empty;
         var symbolFound = false;
-        var lines = File.ReadAllLines("./3/input.txt");
         for (int y = 0; y < lines.Length; y++)
         {
             for (int x = 0; x < lines[y].Length; x++)
@@ -49,8 +48,7 @@ internal class GearRatios
 
         bool IsSymbol(int x, int y)
         {
-            if (y < 0 || y >= lines.Length) return false;
-            if (x < 0 || x >= lines[y].Length) return false;
+            if (y < 0 || y >= lines.Length || x < 0 || x >= lines[y].Length) return false;
             var c = lines[y][x];
             return c != '.' && !char.IsDigit(c);
         }
@@ -117,10 +115,8 @@ internal class GearRatios
 
         bool IsGear(int x, int y)
         {
-            if (y < 0 || y >= lines.Length) return false;
-            if (x < 0 || x >= lines[y].Length) return false;
-            var c = lines[y][x];
-            return c == '*';
+            if (y < 0 || y >= lines.Length || x < 0 || x >= lines[y].Length) return false;
+            return lines[y][x] == '*';
         }
     }
 }

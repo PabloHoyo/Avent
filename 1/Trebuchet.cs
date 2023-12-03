@@ -1,7 +1,9 @@
-﻿namespace Avent._1;
+﻿namespace Avent;
 
-internal class Trebuchet
+internal class Trebuchet : Puzzle, IPuzzle
 {
+    public Trebuchet() : base("./1/input.txt") { }
+
     private readonly Dictionary<string, int> numbers = new()
     {
         { "one" , 1 },
@@ -18,7 +20,6 @@ internal class Trebuchet
     public int Part1()
     {
         int result = 0;
-        var lines = File.ReadAllLines("./1/input.txt");
         foreach (var line in lines) 
         {
             var first = line.First(char.IsDigit);
@@ -30,7 +31,6 @@ internal class Trebuchet
     public int Part2()
     {
         int result = 0;
-        var lines = File.ReadAllLines("./1/input.txt");
         foreach (var line in lines)
         {
             var first = FindNumber(line);

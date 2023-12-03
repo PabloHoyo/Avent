@@ -1,14 +1,15 @@
-﻿namespace Avent._2;
+﻿namespace Avent;
 
-internal class CubeConundrum
+internal class CubeConundrum : Puzzle, IPuzzle
 {
+    public CubeConundrum() : base("./2/input.txt") { }
+
     public int Part1()
     {
         int result = 0;
-        var lines = File.ReadAllLines("./2/input.txt");
         foreach (var line in lines)
         {
-            var game = ParseGame(line);
+            var game = CubeGame.Parse(line);
             if (game.IsPossible(maxRed: 12, maxGreen: 13, maxBlue: 14))
             {
                 result += game.Id;
@@ -20,16 +21,21 @@ internal class CubeConundrum
     public int Part2()
     {
         int result = 0;
-        var lines = File.ReadAllLines("./2/input.txt");
         foreach (var line in lines)
         {
-            var game = ParseGame(line);
+            var game = CubeGame.Parse(line);
             result += game.GetPower();
         }
         return result;
     }
+}
 
-    private CubeGame ParseGame(string line)
+internal class CubeGame
+{
+    public int Id { get; init; }
+    public List<CubeSet> Sets { get; init; } = new();
+
+    public static CubeGame Parse(string line)
     {
         var sets = line.Split(':')[1].Split(';');
         var game = new CubeGame
@@ -50,7 +56,7 @@ internal class CubeConundrum
                 switch (kind)
                 {
                     case "blue": blue = amount; break;
-                    case "green":green = amount; break;
+                    case "green": green = amount; break;
                     case "red": red = amount; break;
                 }
             }
@@ -58,12 +64,6 @@ internal class CubeConundrum
         }
         return game;
     }
-}
-
-internal class CubeGame
-{
-    public int Id { get; init; }
-    public List<CubeSet> Sets { get; init; } = new();
 
     public void AddSet(int red, int green, int blue)
         => Sets.Add(new CubeSet{ Red = red, Green = green, Blue = blue });
