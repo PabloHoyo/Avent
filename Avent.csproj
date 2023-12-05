@@ -26,8 +26,8 @@
     <None Update="05\input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="05\inputdemo.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="05\readme.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

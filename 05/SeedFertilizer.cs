@@ -38,12 +38,12 @@ internal class SeedFertilizer : Puzzle
         ParseSeedsAndConverters();
 
         var lowestLocation = converters.Last().Min(x => x.destination);
+        converters.Reverse();
         do
         {
             var lastValue = lowestLocation;
-            for (int i = converters.Count - 1; i >= 0; i--)
+            foreach (var converter in converters)
             {
-                var converter = converters[i];
                 var match = converter.FirstOrDefault(x => x.destination <= lastValue && lastValue < (x.destination + x.range));
                 if (match == default)
                 {
