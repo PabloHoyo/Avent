@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Avent;
+﻿namespace Avent;
 
 internal class SeedFertilizer : Puzzle
 {
