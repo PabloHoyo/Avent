@@ -1,10 +1,10 @@
 ﻿namespace Avent;
 
-internal class CubeConundrum : Puzzle, IPuzzle
+internal class CubeConundrum : Puzzle
 {
-    public CubeConundrum() : base("./2/input.txt") { }
+    public CubeConundrum() : base("./02/input.txt") { }
 
-    public int Part1()
+    public override string Part1()
     {
         int result = 0;
         foreach (var line in lines)
@@ -15,10 +15,10 @@ internal class CubeConundrum : Puzzle, IPuzzle
                 result += game.Id;
             }
         }
-        return result;
+        return result.ToString();
     }
 
-    public int Part2()
+    public override string Part2()
     {
         int result = 0;
         foreach (var line in lines)
@@ -26,7 +26,7 @@ internal class CubeConundrum : Puzzle, IPuzzle
             var game = CubeGame.Parse(line);
             result += game.GetPower();
         }
-        return result;
+        return result.ToString();
     }
 }
 

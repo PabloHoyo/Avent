@@ -1,8 +1,8 @@
 ﻿namespace Avent;
 
-internal class Trebuchet : Puzzle, IPuzzle
+internal class Trebuchet : Puzzle
 {
-    public Trebuchet() : base("./1/input.txt") { }
+    public Trebuchet() : base("./01/input.txt") { }
 
     private readonly Dictionary<string, int> numbers = new()
     {
@@ -17,7 +17,7 @@ internal class Trebuchet : Puzzle, IPuzzle
         { "nine" , 9 },
     };
 
-    public int Part1()
+    public override string Part1()
     {
         int result = 0;
         foreach (var line in lines) 
@@ -26,9 +26,9 @@ internal class Trebuchet : Puzzle, IPuzzle
             var last = line.Last(char.IsDigit);
             result += Convert.ToInt32(string.Concat(first, last));
         }
-        return result;
+        return result.ToString();
     }
-    public int Part2()
+    public override string Part2()
     {
         int result = 0;
         foreach (var line in lines)
@@ -37,7 +37,7 @@ internal class Trebuchet : Puzzle, IPuzzle
             var last = FindNumber(line, fromEnd: true);
             result += Convert.ToInt32(string.Concat(first, last));
         }
-        return result;
+        return result.ToString();
     }
 
     private int FindNumber(string text, bool fromEnd = false)

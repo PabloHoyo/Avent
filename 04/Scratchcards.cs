@@ -1,10 +1,10 @@
 ﻿namespace Avent;
 
-internal class Scratchcards : Puzzle, IPuzzle
+internal class Scratchcards : Puzzle
 {
-    public Scratchcards() : base("./4/input.txt") { }
+    public Scratchcards() : base("./04/input.txt") { }
 
-    public int Part1()
+    public override string Part1()
     {
         var result = 0;
         foreach (var line in lines)
@@ -14,10 +14,10 @@ internal class Scratchcards : Puzzle, IPuzzle
             var matches = winningNumbers.Intersect(playingNumbers);
             result += matches.Any() ? (int)Math.Pow(2, matches.Count() - 1) : 0;
         }
-        return result;
+        return result.ToString();
     }
 
-    public int Part2()
+    public override string Part2()
     {
         var result = 0;
         var matchCounters = new Dictionary<int, int>(); // [cardId, matchesCount]
@@ -37,7 +37,7 @@ internal class Scratchcards : Puzzle, IPuzzle
             ProcessCard(cardId);
         }
 
-        return result;
+        return result.ToString();
 
         void ProcessCard(int cardId)
         {

@@ -1,10 +1,10 @@
 ﻿namespace Avent;
 
-internal class GearRatios : Puzzle, IPuzzle
+internal class GearRatios : Puzzle
 {
-    public GearRatios() : base("./3/input.txt") { }
+    public GearRatios() : base("./03/input.txt") { }
 
-    public int Part1()
+    public override string Part1()
     {
         int result = 0;
         var currentNumber = string.Empty;
@@ -34,7 +34,7 @@ internal class GearRatios : Puzzle, IPuzzle
             }
             NumberFinished();
         }
-        return result;
+        return result.ToString();
 
         void NumberFinished()
         {
@@ -54,7 +54,7 @@ internal class GearRatios : Puzzle, IPuzzle
         }
     }
 
-    public int Part2()
+    public override string Part2()
     {
         int result = 0;
         var lines = File.ReadAllLines("./3/input.txt");
@@ -93,7 +93,7 @@ internal class GearRatios : Puzzle, IPuzzle
                 result += gear.Value.Aggregate((a, b) => a * b);
             }
         }
-        return result;
+        return result.ToString();
 
         void NumberFinished()
         {
