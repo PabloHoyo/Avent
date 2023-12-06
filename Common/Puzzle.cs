@@ -5,7 +5,7 @@ namespace Avent;
 internal abstract class Puzzle
 {
     protected string[] lines;
-    private static readonly long RUNS = 100;
+    private static readonly long RUNS = 1000;
 
     public Puzzle(string inputPath)
     {

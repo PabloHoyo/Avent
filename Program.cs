@@ -1,4 +1,3 @@
 ﻿using Avent;
 
-Console.WriteLine(new SeedFertilizer().Part2());
-
+new WaitForIt().RunAndTime();
