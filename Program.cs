@@ -1,3 +1,3 @@
 ﻿using Avent;
 
-new WaitForIt().RunAndTime();
+Console.WriteLine(new CamelCards().Part2());

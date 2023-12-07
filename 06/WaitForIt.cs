@@ -25,13 +25,13 @@ internal class WaitForIt : Puzzle
     private static string ProcessRacesV1(List<(long time, long distanceRecord)> races)
     {
         long result = 1;
-        foreach (var race in races)
+        foreach (var (time, distanceRecord) in races)
         {
             long minPushTime = 0;
-            for (long pushTime = 0; pushTime < race.time; pushTime++)
+            for (long pushTime = 0; pushTime < time; pushTime++)
             {
-                var distance = (race.time - pushTime) * pushTime;
-                if (distance > race.distanceRecord)
+                var distance = (time - pushTime) * pushTime;
+                if (distance > distanceRecord)
                 {
                     minPushTime = pushTime;
                     break;
@@ -39,10 +39,10 @@ internal class WaitForIt : Puzzle
             }
 
             long maxPushTime = 0;
-            for (long pushTime = race.time; pushTime > minPushTime; pushTime--)
+            for (long pushTime = time; pushTime > minPushTime; pushTime--)
             {
-                var distance = (race.time - pushTime) * pushTime;
-                if (distance > race.distanceRecord)
+                var distance = (time - pushTime) * pushTime;
+                if (distance > distanceRecord)
                 {
                     maxPushTime = pushTime;
                     break;
@@ -56,10 +56,10 @@ internal class WaitForIt : Puzzle
     private static string ProcessRacesV2(List<(long time, long distanceRecord)> races)
     {
         long result = 1;
-        foreach (var race in races)
+        foreach (var (time, distanceRecord) in races)
         {
-            var bounds = CalculatePushTimeBounds(race.time, race.distanceRecord);
-            result *= bounds.max - bounds.min;
+            var (min, max) = CalculatePushTimeBounds(time, distanceRecord);
+            result *= max - min;
         }
         return result.ToString();
     }
