@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Avent;
+﻿namespace Avent;
 
 internal class CamelCards : Puzzle
 {

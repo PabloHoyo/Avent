@@ -29,6 +29,9 @@
     <None Update="05\readme.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
+    <None Update="08\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="07\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

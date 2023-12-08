@@ -1,3 +1,3 @@
 ﻿using Avent;
 
-Console.WriteLine(new CamelCards().Part2());
+Console.WriteLine(new HauntedWasteland().Part2());
