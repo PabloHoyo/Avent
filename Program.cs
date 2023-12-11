@@ -1,3 +1,3 @@
 ﻿using Avent;
 
-Console.WriteLine(new HauntedWasteland().Part2());
+Console.WriteLine(new MirageMaintenance().Part2());

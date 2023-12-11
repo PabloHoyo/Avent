@@ -53,7 +53,7 @@ internal class HauntedWasteland : Puzzle
         var nodes = new Dictionary<string, (string left, string right)>();
         foreach (var line in lines.Skip(2))
         {
-            nodes[line.Substring(0, 3)] = new(line.Substring(7, 3), line.Substring(12, 3));
+            nodes[line[..3]] = new(line.Substring(7, 3), line.Substring(12, 3));
         }
 
         return nodes;
