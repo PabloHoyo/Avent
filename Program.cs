@@ -1,3 +1,5 @@
 ﻿using Avent;
 
-Console.WriteLine(new MirageMaintenance().Part2());
+var day = new HotSprings();
+Console.WriteLine(day.Part1());
+Console.WriteLine(day.Part2());
