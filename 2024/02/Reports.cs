@@ -12,7 +12,7 @@ internal class Reports : Puzzle
 
     public override string Part2()
     {
-        return ParseReports().Count(report => report.Select((x, i) => { List<int> v = [.. report]; v.RemoveAt(i); return v; }).ToList().Any(IsSafe)).ToString();
+        return ParseReports().Count(report => report.Select((x, i) => { List<int> v = [.. report]; v.RemoveAt(i); return v; }).Any(IsSafe)).ToString();
     }
 
     private List<List<int>> ParseReports()
