@@ -1,6 +1,4 @@
-﻿using System.IO.IsolatedStorage;
-
-namespace Avent;
+﻿namespace Avent;
 
 internal class Reports : Puzzle
 {
@@ -9,12 +7,12 @@ internal class Reports : Puzzle
 
     public override string Part1()
     {
-        return ParseReports().Count(x => IsSafe(x)).ToString();
+        return ParseReports().Count(IsSafe).ToString();
     }
 
     public override string Part2()
     {
-        return ParseReports().Count(x => IsSafe(x, dampenerProblem: true)).ToString();
+        return ParseReports().Count(report => report.Select((x, i) => { List<int> v = [.. report]; v.RemoveAt(i); return v; }).ToList().Any(IsSafe)).ToString();
     }
 
     private List<List<int>> ParseReports()
@@ -22,13 +20,17 @@ internal class Reports : Puzzle
         return lines.Select(line => line.Split(" ").Select(int.Parse).ToList()).ToList();
     }
 
-    private bool IsSafe(List<int> report, bool dampenerProblem = false)
+    private bool IsSafe(List<int> report)
     {
-        var diffs = report.Zip(report.Skip(1), (a, b) => a - b).ToList();
-        var minAllowedOkDiffs = dampenerProblem ? diffs.Count - 1 : diffs.Count;
-        var sequence = Math.Max(diffs.Count(diff => diff > 0), diffs.Count(diff => diff < 0));
-        var distance = diffs.Count(diff => 1 <= Math.Abs(diff) && Math.Abs(diff) <= 3);
-        return sequence >= minAllowedOkDiffs && distance >= minAllowedOkDiffs;
+        var levels = report.Zip(report.Skip(1), (a, b) => new Level(a - b)).ToList();
+        var okCount = Math.Max(levels.Count(l => l.IsPosOk), levels.Count(l => l.IsNegOk));
+        return okCount == levels.Count;
     }
 
+    internal record Level(int diff)
+    {
+        public bool IsPosOk => IsDistOk && diff > 0;
+        public bool IsNegOk => IsDistOk && diff < 0;
+        private bool IsDistOk => Math.Abs(diff) >= 1 && Math.Abs(diff) <= 3;
+    }
 }
